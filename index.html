@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOCUVERSE ULTIMATE — สตูดิโอออกแบบสารคดีหนังเล่าเรื่อง</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070d19;--card:#0e1829;--line:#1b2a43;--ink:#e6edf7;--mute:#8d9bb3;--acc:#5eead4;--acc2:#a5b4fc;--in:#09111f;--bad:#fb7185}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 500px at 10% -10%,#10223d 0,transparent 60%),var(--bg);color:var(--ink);font:400 15px/1.5 Sarabun,"Noto Sans Thai",system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 14px 40px}
+header{display:flex;gap:12px;align-items:flex-start;margin:8px 0 18px}
+.logo{flex:none;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#5eead4,#38bdf8);color:#04202a;font:700 20px Kanit,sans-serif;display:grid;place-items:center}
+.kick{font:600 11px Kanit,sans-serif;letter-spacing:.14em;color:var(--acc2)}
+h1{font:700 24px/1.1 Kanit,sans-serif;margin:2px 0 6px}
+header p{margin:0;color:var(--mute)}
+.grid{display:grid;gap:16px}
+@media(min-width:980px){.grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}.out{position:sticky;top:12px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card>h2{font:600 18px Kanit,sans-serif;margin:0 0 4px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.card>h2 b{color:var(--acc)}
+.sec{font:600 13px Kanit,sans-serif;color:var(--acc2);margin:20px 0 8px;padding-top:4px}
+label.l{display:block;font:500 12.5px Kanit,sans-serif;color:#c3cde0;margin:12px 0 5px}
+select,input[type=text],input[type=number],textarea{width:100%;background:var(--in);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit;outline:0}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#8d9bb3 50%),linear-gradient(135deg,#8d9bb3 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:32px}
+textarea{resize:vertical;min-height:74px}
+::placeholder{color:#55627a}
+select:focus,input:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 2px #5eead433}
+input:disabled{opacity:.55}
+.err{border-color:var(--bad)!important}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid var(--line);border-radius:10px;background:var(--in);font-size:13.5px;cursor:pointer}
+.chip input{accent-color:var(--acc);width:16px;height:16px;margin:0}
+.note{font-size:12px;color:var(--mute);margin:10px 0 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{font:500 14px Kanit,sans-serif;border-radius:10px;border:1px solid var(--line);background:#13213a;color:var(--ink);padding:10px 16px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button.p{background:var(--acc);color:#04202a;border-color:var(--acc);font-weight:600}
+button.r{color:#fda4af}
+.badge{font:500 12px Kanit,sans-serif;color:var(--acc);border:1px solid #5eead466;border-radius:99px;padding:3px 12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabs button{padding:7px 13px;font-size:13px}
+.tabs button.on{border-color:var(--acc);color:var(--acc)}
+#view{background:#050a14;border:1px solid var(--line);border-radius:12px;padding:14px;min-height:340px;max-height:62vh;overflow:auto;white-space:pre-wrap;word-break:break-word;font:400 13.5px/1.65 Sarabun,monospace}
+#view.empty{color:#aeb9cc}
+.foot{font-size:12px;color:var(--mute);margin-top:12px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#13213a;border:1px solid var(--acc);color:var(--ink);padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;z-index:9}
+#toast.show{opacity:1}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">D</div><div>
+<div class="kick">AI DOCUMENTARY STORY STUDIO</div>
+<h1>DOCUVERSE ULTIMATE</h1>
+<p>สตูดิโอออกแบบสารคดีหนังเล่าเรื่อง • ตั้งแต่ค้นคว้า วางโครงเรื่อง ไปจนถึง Prompt พร้อมผลิต</p></div></header>
+
+<div class="grid">
+<section class="card" id="form"><h2><span><b>✦</b> ตั้งค่าการผลิตสารคดี</span></h2></section>
+<section class="card out">
+<h2><span><b>▣</b> ผลลัพธ์พร้อมใช้งาน</span><span class="badge" id="st">พร้อมสร้าง</span></h2>
+<div class="tabs" id="tabs"></div>
+<div id="view" class="empty">กด “สร้าง Prompt” เพื่อสร้างชุดคำสั่งสารคดีจากค่าที่เลือกทั้งหมด</div>
+<div class="btns"><button class="p" id="bCopy">คัดลอกผลลัพธ์</button><button id="bTxt">ดาวน์โหลด TXT</button><button id="bJson">ดาวน์โหลด JSON</button></div>
+<p class="foot">DOCUVERSE ULTIMATE • ทำงานในเบราว์เซอร์เครื่องคุณ • ไม่ส่งข้อมูลไปยังเซิร์ฟเวอร์ใด ๆ โปรแกรมนี้ช่วยเรียบเรียง Prompt เท่านั้น ไม่ได้ค้นหาหรือยืนยันข้อเท็จจริง</p>
+</section>
+</div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const STR=[
+["เปิดปม–ปูข้อมูล–สืบค้น–เฉลยตามหลักฐาน",[["เปิดปม","ตั้งคำถามหลักให้ผู้ชมอยากรู้",.2],["ปูข้อมูล","วางบริบท ตัวละคร สถานที่ และเวลา",.25],["สืบค้น","ไล่หลักฐานและข้อมูลทีละชั้น",.35],["เฉลยตามหลักฐาน","สรุปคำตอบเท่าที่หลักฐานรองรับ",.2]]],
+["ไทม์ไลน์ตามลำดับเหตุการณ์",[["ต้นเรื่อง","จุดเริ่มต้นของเหตุการณ์",.25],["พัฒนาการ","เหตุการณ์สำคัญเรียงตามเวลา",.4],["จุดเปลี่ยน","เหตุการณ์ที่เปลี่ยนทิศทางเรื่อง",.2],["ผลที่ตามมา","ผลกระทบและสถานการณ์ปัจจุบัน",.15]]],
+["ปัญหา–สาเหตุ–ผลกระทบ–ทางออก",[["ปัญหา","นำเสนอปัญหาให้เห็นภาพชัด",.2],["สาเหตุ","อธิบายต้นตอด้วยข้อมูล",.3],["ผลกระทบ","ผลต่อคนและสังคม",.3],["ทางออก","แนวทางแก้ไขที่เป็นไปได้",.2]]],
+["ตัวละครเป็นศูนย์กลาง",[["แนะนำตัวละคร","ให้ผู้ชมรู้จักและเข้าใจเขา",.25],["เป้าหมายและอุปสรรค","สิ่งที่เขาต้องการและสิ่งที่ขวาง",.35],["จุดวิกฤต","ช่วงเวลาตัดสินใจสำคัญ",.25],["บทสรุป","ผลลัพธ์และความหมายของเรื่อง",.15]]],
+["ย้อนเวลา (Flashback)",[["ปัจจุบัน","เปิดด้วยภาพปัจจุบันที่ทิ้งคำถาม",.15],["ย้อนอดีต","เล่าเหตุการณ์ที่นำมาสู่ปัจจุบัน",.5],["เชื่อมโยง","โยงอดีตกลับมาหาปัจจุบัน",.2],["ข้อสรุป","ปิดคำถามที่เปิดไว้",.15]]],
+["เปรียบเทียบสองมุมมอง",[["เปิดประเด็น","แนะนำเรื่องและคำถามหลัก",.2],["มุมมอง A","ข้อมูลและเหตุผลฝั่งแรก",.3],["มุมมอง B","ข้อมูลและเหตุผลฝั่งที่สอง",.3],["วิเคราะห์และสรุป","เทียบหลักฐานทั้งสองฝั่ง",.2]]]];
+const CH=["แยกข้อเท็จจริงกับข้อสันนิษฐาน","ขอแหล่งข้อมูลที่ตรวจสอบได้","ระบุสิ่งที่ยังไม่ทราบ","ห้ามแต่งหลักฐานหรือคำพูดจริง","เคารพความเป็นส่วนตัวและผู้เสียหาย","ระบุภาพจำลองเหตุการณ์ให้ชัดเจน","มีคำบรรยายบนจอ","มีข้อความ/กราฟิกบนจอ"];
+const RULE=["แยก “ข้อเท็จจริง” ออกจาก “ข้อสันนิษฐาน” ในบทบรรยายทุกครั้ง","ข้อเท็จจริงสำคัญทุกข้อต้องมีแหล่งข้อมูลที่ผู้ชมตรวจสอบได้","ระบุสิ่งที่ยังไม่ทราบหรือยังไม่มีข้อสรุปอย่างตรงไปตรงมา","ห้ามแต่งหลักฐาน เอกสาร หรือคำพูดจริงของบุคคลขึ้นมาเอง","เคารพความเป็นส่วนตัวและศักดิ์ศรีของผู้เสียหายและผู้เกี่ยวข้อง","ภาพจำลองเหตุการณ์ต้องระบุชัดเจนว่าเป็นภาพจำลอง (reconstruction)","ใส่คำบรรยายบนจอให้ตรงกับเสียงบรรยาย","ใช้ข้อความ/กราฟิกบนจอ (วันที่ สถานที่ ชื่อ) เฉพาะที่จำเป็น"];
+// [id,label,type(s/t/a/n),options|placeholder,default]
+const FORM=[
+["01 / แนวคิดและหัวข้อ",[
+["topicMode","วิธีเลือกหัวข้อ","s",["ฉันกำหนดหัวข้อเอง","ให้ AI เสนอหัวข้อจากหมวดที่เลือก","สุ่มหัวข้อที่น่าสนใจ"]],
+["genre","หมวดสารคดี","s",["เรื่องลึกลับและปริศนา","อาชญากรรมจริงและคดีดัง","ประวัติศาสตร์และสงคราม","วิทยาศาสตร์และเทคโนโลยี","ธรรมชาติและสัตว์ป่า","บุคคลสำคัญและชีวประวัติ","สังคมและวัฒนธรรม","อวกาศและจักรวาล","สุขภาพและจิตใจ","ธุรกิจและการเงิน","ตำนานและความเชื่อ"]],
+["title","ชื่อเรื่อง / หัวข้อหลัก","t","เช่น เมืองที่หายไปอย่างไร้ร่องรอย หรือคดี..."],
+["angle","มุมเล่าเรื่องและคำถามหลัก","a","อะไรคือคำถามที่ผู้ชมอยากรู้? มีข้อขัดแย้งหรือปมไหนที่ต้องคลี่คลาย?"],
+["audience","กลุ่มผู้ชมและเป้าหมาย","t","","ผู้ชมทั่วไปที่ชอบสารคดีเข้มข้นและเรื่องเล่า"]]],
+["02 / โครงสร้างและความยาว",[
+["total","ความยาวรวม","s",["1 นาที","2 นาที","3 นาที","5 นาที","8 นาที","10 นาที","15 นาที","กำหนดเอง"],2],
+["customSec","ความยาวกำหนดเอง (วินาที)","n","",180],
+["clipLen","ความยาวต่อคลิป","s",["5 วินาที","8 วินาที","10 วินาที","15 วินาที"],2],
+["ratio","อัตราส่วนภาพ","s",["16:9 แนวนอน","9:16 แนวตั้ง","1:1 สี่เหลี่ยมจัตุรัส","4:5 แนวตั้งสั้น"],1],
+["structure","โครงสร้างเรื่อง","s",STR.map(x=>x[0])],
+["ending","รูปแบบตอนจบ","s",["สรุปชัดเจนตามหลักฐาน","ปล่อยคำถามให้ผู้ชมคิดต่อ","หักมุมเล็กน้อยแต่อิงข้อเท็จจริง","ชวนติดตามตอนต่อไป"]]]],
+["03 / ภาพและงานกล้อง",[
+["style","สไตล์ภาพ","s",["สารคดีภาพยนตร์สมจริงระดับ Hollywood","Live-action สมจริงแบบข่าวสืบสวน","Realistic CGI / VFX","สารคดีธรรมชาติ Cinematic","ฟุตเทจ archive / archival documentary","แอนิเมชัน 3D คุณภาพภาพยนตร์","ภาพวาดเชิงประวัติศาสตร์","Found footage / handheld","ผสมภาพจริงกับ CGI อธิบายเหตุการณ์"]],
+["tone","โทนสีและอารมณ์","s",["โทนเย็น ลึกลับ กดดัน","มืดหม่น สมจริง สืบสวน","เป็นกลางแบบสารคดีข้อเท็จจริง","ยิ่งใหญ่ อลังการ","อบอุ่นและมีมนุษยธรรม","ธรรมชาติ สีสมจริง","หม่นแบบประวัติศาสตร์","หลอนเหนือจริง"]],
+["camera","งานกล้องและมุมมอง","s",["ภาพกว้างเปิดสถานที่ + close-up หลักฐาน + tracking shot","Handheld แบบนักข่าวภาคสนาม","Slow dolly และ slow push-in","Drone / aerial establishing shots","Macro รายละเอียดวัตถุและหลักฐาน","กล้องนิ่งแบบสัมภาษณ์","ผสมหลายรูปแบบอย่างมีเหตุผล"]],
+["light","แสงและบรรยากาศ","s",["Low-key cinematic และแสงธรรมชาติ","แสงธรรมชาติล้วน","แสงนุ่มช่วง golden hour","ไฟกลางคืนในเมือง สะท้อนฝน","แสงจากไฟฉายและแหล่งกำเนิดในฉาก","High-key สว่างสะอาด"]],
+["detail","ระดับรายละเอียด","s",["สูงสุด — ระบุองค์ประกอบทุกช็อต","ละเอียดมาก","สมดุล อ่านง่าย พร้อมใช้งาน","กระชับสำหรับคัดลอกลง AI"]],
+["fps","เฟรมเรตเป้าหมาย","s",["24 FPS — cinematic","25 FPS — broadcast","30 FPS — social video","50 FPS","60 FPS — motion ชัด","ให้ระบบเลือกตามฉาก"]],
+["imgExtra","ข้อกำหนดภาพเพิ่มเติม","a","เช่น ไม่ใช้สีอุ่น, realistic texture, ไม่มีภาพมืดจนมองไม่เห็น, ภาพหลักฐานต้องอ่านออก"]]],
+["04 / เสียง ผู้บรรยาย และบทพูด",[
+["voice","เสียงผู้บรรยาย","s",["ชายเสียงทุ้ม ลึก หนักแน่น ชัดถ้อยชัดคำ","หญิงเสียงนุ่ม ชัด น่าเชื่อถือ","ชายวัยกลางคน เป็นกันเอง","หญิงวัยกลางคน สุขุม มีน้ำหนัก","เสียงกระซิบ ลึกลับ ใกล้หู"]],
+["narForm","รูปแบบการเล่า","s",["ผู้บรรยายเล่าต่อเนื่องตลอดเรื่อง","ผู้บรรยายสลับบทสัมภาษณ์","ผู้บรรยายเฉพาะช่วงสำคัญ","บทพูดตัวละครเท่านั้น","ผู้บรรยาย + บทพูดตัวละคร","ไม่มีเสียงพูด ใช้ภาพและเสียงแวดล้อม"]],
+["lang","ภาษาหลัก","s",["ภาษาไทย","English","中文","日本語","한국어"]],
+["pace","จังหวะการอ่าน","s",["ช้า ชัด เว้นจังหวะสร้างความสงสัย","กลาง เป็นธรรมชาติ","กระชับ ฉับไว","สลับจังหวะตามอารมณ์ฉาก"]],
+["music","ดนตรีประกอบ","s",["ดนตรีลึกลับแบบ cinematic เบาใต้เสียงบรรยาย","Ambient เรียบ ไม่แย่งเสียงพูด","ออร์เคสตราอลังการ","เปียโนเศร้า เรียบง่าย","ไม่มีดนตรี"]],
+["sfx","เสียงประกอบ","s",["เสียงแวดล้อมสมจริง + cinematic sound design","เสียงแวดล้อมสมจริงเท่านั้น","Foley รายละเอียดสูง","เสียงน้อยที่สุด"]],
+["audioExtra","กติกาเสียงเพิ่มเติม","a","เช่น ตัวละครห้ามพูดทับเสียงผู้บรรยาย, ไม่มีเพลงดังกลบคำพูด, ออกเสียงชื่อเฉพาะให้ถูกต้อง"]]],
+["05 / ความถูกต้องและจริยธรรม",[["checks"]]],
+["06 / ความต่อเนื่องและข้อห้าม",[
+["cont","ระดับล็อกความต่อเนื่อง","s",["เข้มงวดสูงสุด — ล็อกทุกคลิป","เข้มงวด — ล็อกตัวละครและสถานที่","ปานกลาง — ล็อกเฉพาะตัวละครหลัก","ยืดหยุ่น"]],
+["platform","แพลตฟอร์มสร้างวิดีโอ","s",["Meta AI","Google Veo / Flow","Sora","Runway","Kling","Pika","Luma Dream Machine","Hailuo / MiniMax","ทั่วไป (Generic)"]],
+["keep","รายละเอียดที่ต้องคงเดิม","a","เช่น หน้าตา รูปร่าง ชุดเสื้อผ้า ทิศทางแสง สภาพอากาศ ช่วงเวลา และตำแหน่งวัตถุ"],
+["neg","Negative Prompt / สิ่งที่ห้ามเกิด","a","","ห้ามเปลี่ยนหัวข้อหรือข้อเท็จจริงเอง, ห้ามสร้างข้อความมั่วบนภาพ, ห้ามเปลี่ยนใบหน้า/เสื้อผ้า/สถานที่ระหว่างคลิปโดยไม่ได้สั่ง"]]],
+["07 / แผนงานและผลลัพธ์",[
+["outFmt","รูปแบบผลลัพธ์","s",["Master Prompt + แผนฉาก + Prompt รายคลิป","Master Prompt + QC Checklist","แผนคลิป + QC Checklist","JSON เท่านั้น"]],
+["planDetail","ความละเอียดของแผนภาพ","s",["ทุกคลิปมีภาพเปิด มุมกล้อง การเคลื่อนไหว และภาพปิด","ระบุเต็มเฉพาะคลิปแรกของแต่ละฉาก","แบบย่อทุกคลิป"]],
+["extra","คำสั่งเพิ่มเติม / ข้อกำหนดเฉพาะโปรเจกต์","a","ใส่เงื่อนไขที่ต้องรักษาทุกข้อ เช่น หมายเลขตอน ชื่อเรื่อง จำนวนฉาก หรือสิ่งที่ห้ามแก้ไข"]]]
+];
+const DEF={};
+(function build(){
+ const f=$("form");let h="";
+ FORM.forEach(([t,fs])=>{
+  h+=`<div class="sec">${t}</div>`;
+  fs.forEach(x=>{
+   if(x[0]==="checks"){
+    h+=`<div class="chips">`+CH.map((c,i)=>`<label class="chip"><input type="checkbox" id="c${i}"${i<6?" checked":""}>${c}</label>`).join("")+`</div><p class="note">หมายเหตุ: โปรแกรมสร้าง Prompt ไม่ได้ค้นหาหรือยืนยันข้อเท็จจริง ต้องนำ Prompt ไปใช้กับระบบที่มีแหล่งอ้างอิง และตรวจสอบข้อมูลก่อนเผยแพร่</p>`;return;}
+   const [id,l,ty,o,d]=x;
+   h+=`<label class="l" for="${id}">${l}</label>`;
+   if(ty==="s")h+=`<select id="${id}">${o.map((v,i)=>`<option${i===(d||0)?" selected":""}>${v}</option>`).join("")}</select>`;
+   else if(ty==="a")h+=`<textarea id="${id}" placeholder="${o}">${d||""}</textarea>`;
+   else h+=`<input type="${ty==="n"?"number":"text"}" id="${id}" placeholder="${o}" value="${d||""}"${ty==="n"?" disabled min=10":""}>`;
+  });
+ });
+ h+=`<div class="btns"><button class="p" id="bGen">✦ สร้าง Prompt</button><button id="bEx">ใส่ตัวอย่าง</button><button class="r" id="bReset">รีเซ็ต</button></div>`;
+ f.insertAdjacentHTML("beforeend",h);
+})();
+const snap=()=>{document.querySelectorAll("#form select,#form input,#form textarea").forEach(e=>DEF[e.id]=e.type==="checkbox"?e.checked:e.value)};snap();
+const g=id=>$(id).value;
+function syncTotal(){const c=g("total")==="กำหนดเอง";$("customSec").disabled=!c;if(!c)$("customSec").value=parseInt(g("total"))*60}
+$("total").onchange=syncTotal;
+const toast=m=>{const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.k);toast.k=setTimeout(()=>t.classList.remove("show"),2400)};
+const mmss=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+let OUT=null,TAB="m";
+const TABS={m:"Master Prompt",p:"แผนคลิป",j:"JSON",q:"QC Checklist"};
+const ALLOW=[["m","p","j","q"],["m","q"],["p","q"],["j"]];
+
+function gen(){
+ const mode=g("topicMode"),title=g("title").trim();
+ if(mode===$("topicMode").options[0].value&&!title){$("title").classList.add("err");$("title").focus();toast("กรอกชื่อเรื่อง / หัวข้อหลักก่อนสร้าง Prompt");return}
+ $("title").classList.remove("err");
+ const custom=g("total")==="กำหนดเอง";
+ const sec=custom?Math.max(10,+g("customSec")||180):parseInt(g("total"))*60;
+ const cl=parseInt(g("clipLen")),n=Math.ceil(sec/cl);
+ const acts=STR.find(x=>x[0]===g("structure"))[1];
+ let cum=0;const bd=acts.map(a=>cum+=a[2]);
+ const di=$("detail").selectedIndex,pi=$("planDetail").selectedIndex;
+ const noVoice=$("narForm").selectedIndex===5;
+ const rate=[4,5,6,5][$("pace").selectedIndex];
+ const rules=CH.map((_,i)=>$("c"+i).checked?RULE[i]:null).filter(Boolean);
+ const topic=title||"(ให้ AI เสนอ 3 หัวข้อจากหมวด “"+g("genre")+"” ให้ผู้ใช้เลือกก่อนเขียนบท)";
+ const keep=g("keep").trim(),imgX=g("imgExtra").trim(),aX=g("audioExtra").trim(),neg=g("neg").trim(),ex=g("extra").trim();
+ let prev=-1;
+ const clips=Array.from({length:n},(_,i)=>{
+  const p=(i+.5)/n;let k=bd.findIndex(b=>p<=b+1e-9);if(k<0)k=acts.length-1;
+  const s=i*cl,e=Math.min(sec,s+cl),d=e-s,first=k!==prev;prev=k;
+  const V=[`ฉาก “${acts[k][0]}”: ${acts[k][1]} (หัวข้อ: ${topic})`,`สไตล์ภาพ: ${g("style")}`];
+  if(di<=2)V.push(`โทน: ${g("tone")}`,`กล้อง: ${g("camera")}`,`แสง: ${g("light")}`);
+  if(di<=1){V.push(`อัตราส่วน ${g("ratio")} • ${g("fps")}`);if(keep)V.push(`คงเดิม: ${keep}`);if(imgX)V.push(`ภาพเพิ่มเติม: ${imgX}`)}
+  if(di===0){const a=(d/3).toFixed(1);V.push(`ช็อต A (${a} วิ): ภาพเปิดสถานที่/บริบทของฉาก`,`ช็อต B (${a} วิ): close-up หลักฐานหรือรายละเอียดสำคัญ`,`ช็อต C (${a} วิ): ภาพปิดที่ต่อเนื่องไปคลิปถัดไป`)}
+  let plan;
+  if(pi===0||(pi===1&&first))plan=[`ภาพเปิด: องค์ประกอบแรกที่ผู้ชมเห็นในฉาก “${acts[k][0]}”`,`มุมกล้อง: ${g("camera")}`,`การเคลื่อนไหว: ค่อยเป็นค่อยไปให้เข้ากับจังหวะ ${g("pace")}`,`ภาพปิด: ${i<n-1?"เชื่อมต่อคลิปถัดไป":"ภาพปิดเรื่องตามรูปแบบตอนจบ"}`].join(" | ");
+  else plan=pi===1?"ต่อเนื่องจากคลิปก่อนหน้า คงตัวละคร สถานที่ และแสงเดิม":`${acts[k][0]} – ภาพต่อเนื่อง`;
+  const syl=Math.round(d*rate);
+  const nar=noVoice?"ไม่มีเสียงพูด (ใช้ภาพและเสียงแวดล้อม)":`${g("voice")} • ภาษา${g("lang").replace("ภาษา","")} • บทประมาณ ${syl} พยางค์ • เนื้อหา: ${acts[k][1]}${$("c0").checked?" (แยกข้อเท็จจริง/ข้อสันนิษฐานให้ชัด)":""}`;
+  const aud=`${g("music")} • ${g("sfx")}${aX?" • "+aX:""}`;
+  return{no:i+1,start:mmss(s),end:mmss(e),seconds:d,act:acts[k][0],narration:nar,visual:V.join("\n   "),plan,audio:aud,firstInAct:first};
+ });
+ const cont=g("cont"),plat=g("platform");
+ const master=[
+ `# MASTER PROMPT — ${topic}`,"",
+ `[แนวคิด] หมวด: ${g("genre")} | กลุ่มผู้ชม: ${g("audience")||"-"}`,
+ g("angle").trim()?`[มุมเล่า/คำถามหลัก] ${g("angle").trim()}`:"",
+ `[โครงสร้าง] ${g("structure")} | ตอนจบ: ${g("ending")}`,
+ `[ความยาว] รวม ${mmss(sec)} นาที = ${n} คลิป × ${cl} วินาที | ${g("ratio")} | ${g("fps")}`,"",
+ `[ภาพ] ${g("style")} | โทน: ${g("tone")}`,`[กล้อง] ${g("camera")}`,`[แสง] ${g("light")}`,imgX?`[ภาพเพิ่มเติม] ${imgX}`:"","",
+ `[เสียง] ผู้บรรยาย: ${g("voice")} | รูปแบบ: ${g("narForm")} | ภาษา: ${g("lang")} | จังหวะ: ${g("pace")}`,`[ดนตรี/เสียงประกอบ] ${g("music")} / ${g("sfx")}`,aX?`[กติกาเสียง] ${aX}`:"","",
+ `[ความถูกต้องและจริยธรรม]`,...(rules.length?rules.map(r=>"- "+r):["- (ไม่ได้เลือก)"]),"",
+ `[ความต่อเนื่อง] ระดับ: ${cont}`,`ใช้ตัวละคร สถานที่ เสื้อผ้า ทิศทางแสง และสภาพอากาศชุดเดียวกันทุกคลิปตามระดับที่เลือก`,keep?`ต้องคงเดิม: ${keep}`:"",
+ `[แพลตฟอร์ม] ${plat} — วาง Prompt รายคลิปทีละคลิป พร้อมแนบ Master Prompt นี้ทุกครั้ง`,
+ neg?`[NEGATIVE] ${neg}`:"",ex?`[คำสั่งเพิ่มเติม] ${ex}`:"","",
+ `หมายเหตุ: Prompt นี้ไม่ได้ตรวจสอบข้อเท็จจริง กรุณาค้นคว้าและยืนยันแหล่งข้อมูลก่อนผลิตและเผยแพร่`].filter((x,i,a)=>x!==""||a[i-1]!=="").join("\n");
+ const planT=`# แผนคลิป — ${topic}\n\n`+clips.map(c=>`${c.firstInAct?`\n## ฉาก: ${c.act}\n`:""}คลิป ${c.no} [${c.start}–${c.end}] (${c.seconds} วิ)\n - แผนภาพ: ${c.plan}\n - Prompt ภาพ:\n   ${c.visual}\n - บรรยาย: ${c.narration}\n - เสียง: ${c.audio}\n`).join("\n");
+ const qc=[`# QC CHECKLIST — ${topic}`,"",
+ "ก่อนผลิต",`☐ ยืนยันข้อเท็จจริงของ “${topic}” กับแหล่งข้อมูลที่เชื่อถือได้`,"☐ เตรียมรายการแหล่งอ้างอิงสำหรับใส่ในคำบรรยายคลิป/คำอธิบายโพสต์",
+ ...rules.map(r=>"☐ "+r),"","หลังสร้างคลิป",
+ `☐ ครบ ${n} คลิป รวม ${mmss(sec)} นาที`,`☐ อัตราส่วน ${g("ratio")} และ ${g("fps")} ตรงตามที่ตั้งไว้`,
+ "☐ ตัวละคร สถานที่ เสื้อผ้า และแสงต่อเนื่องกันทุกคลิป","☐ ตรวจตัวอักษรบนภาพ (โดยเฉพาะภาษาไทย) ว่าสะกดถูกและอ่านออก","☐ เสียงบรรยายไม่ถูกเพลงหรือเสียงประกอบกลบ",
+ `☐ ตรวจข้อจำกัดความยาวคลิปและนโยบายเนื้อหาของ ${plat}`,"☐ ตรวจเนื้อหาละเอียดอ่อนและข้อมูลส่วนบุคคลก่อนเผยแพร่"].join("\n");
+ const json=JSON.stringify({app:"DOCUVERSE ULTIMATE",topic:title||null,genre:g("genre"),angle:g("angle"),audience:g("audience"),
+  structure:g("structure"),ending:g("ending"),totalSeconds:sec,clipSeconds:cl,clipCount:n,aspectRatio:g("ratio"),fps:g("fps"),
+  visual:{style:g("style"),tone:g("tone"),camera:g("camera"),lighting:g("light"),detail:g("detail"),extra:imgX},
+  audio:{voice:g("voice"),narration:g("narForm"),language:g("lang"),pace:g("pace"),music:g("music"),sfx:g("sfx"),extra:aX},
+  ethics:rules,continuity:cont,platform:plat,keep,negativePrompt:neg,extraInstructions:ex,
+  clips:clips.map(({firstInAct,...c})=>c)},null,2);
+ OUT={m:master,p:planT,j:json,q:qc,fmt:$("outFmt").selectedIndex};
+ const al=ALLOW[OUT.fmt];if(!al.includes(TAB))TAB=al[0];
+ $("st").textContent="สร้างแล้ว";render();toast(`สร้างสำเร็จ — ${n} คลิป`);
+ if(innerWidth<980)$("view").scrollIntoView({behavior:"smooth",block:"center"});
+}
+function render(){
+ const al=ALLOW[OUT.fmt];
+ $("tabs").innerHTML=al.map(k=>`<button class="${k===TAB?"on":""}" data-k="${k}">${TABS[k]}</button>`).join("");
+ $("tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{TAB=b.dataset.k;render()});
+ $("view").classList.remove("empty");$("view").textContent=OUT[TAB];
+}
+function initTabs(){$("tabs").innerHTML=Object.keys(TABS).map((k,i)=>`<button class="${i?"":"on"}" disabled>${TABS[k]}</button>`).join("")}initTabs();
+function need(){if(!OUT){toast("กด “สร้าง Prompt” ก่อน");return false}return true}
+function dl(name,txt,mime){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:mime+";charset=utf-8"}));a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+const stamp=()=>new Date().toISOString().slice(0,10);
+$("bGen").onclick=gen;
+$("bCopy").onclick=async()=>{if(!need())return;const t=OUT[TAB];try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement("textarea");x.value=t;document.body.appendChild(x);x.select();document.execCommand("copy");x.remove()}toast("คัดลอกแล้ว")};
+$("bTxt").onclick=()=>{if(!need())return;const al=ALLOW[OUT.fmt].filter(k=>k!=="j");dl(`docuverse-prompt-${stamp()}.txt`,(al.length?al:["j"]).map(k=>OUT[k]).join("\n\n"+"=".repeat(40)+"\n\n"),"text/plain");toast("ดาวน์โหลด TXT แล้ว")};
+$("bJson").onclick=()=>{if(!need())return;dl(`docuverse-prompt-${stamp()}.json`,OUT.j,"application/json");toast("ดาวน์โหลด JSON แล้ว")};
+$("bEx").onclick=()=>{
+ $("topicMode").selectedIndex=0;$("genre").selectedIndex=0;
+ $("title").value="เมืองที่หายไปอย่างไร้ร่องรอย";
+ $("angle").value="เกิดอะไรขึ้นกับชุมชนเล็ก ๆ ที่ผู้คนหายไปในคืนเดียว? หลักฐานอะไรยืนยันได้ และอะไรยังเป็นเพียงข้อสันนิษฐาน";
+ $("title").classList.remove("err");toast("ใส่ตัวอย่างแล้ว")};
+$("bReset").onclick=()=>{
+ document.querySelectorAll("#form select,#form input,#form textarea").forEach(e=>{const d=DEF[e.id];if(e.type==="checkbox")e.checked=d;else e.value=d});
+ syncTotal();OUT=null;TAB="m";$("st").textContent="พร้อมสร้าง";initTabs();
+ $("view").className="empty";$("view").textContent="กด “สร้าง Prompt” เพื่อสร้างชุดคำสั่งสารคดีจากค่าที่เลือกทั้งหมด";toast("รีเซ็ตแล้ว")};
+</script>
+</body>
+</html>
